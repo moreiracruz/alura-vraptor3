@@ -11,9 +11,10 @@
 	<table>
 		<form action='<c:url value="/produto/adiciona"/>' method="post">
 		<tr>
-			Nome: <td><input type="text" name="produto.nome" /></td>
-			Descrição: <td><input type="text" name="produto.descricao" /></td>
-			Preço: <td><input type="text" name="produto.preco" /></td>
+			<td>Nome: <input type="text" name="produto.nome" /></td>
+			<td>Descrição: <input type="text" name="produto.descricao" /></td>
+			<td>Cor: <input type="text" name="produto.cor" /></td>
+			<td>Preço: <input type="text" name="produto.preco" /></td>
 			<td><input type="submit" value="Adicionar" /></td>
 		</tr>
 		</form>

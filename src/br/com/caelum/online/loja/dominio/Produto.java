@@ -5,6 +5,7 @@ public class Produto {
 	private Long id;
 	private String nome;
 	private String descricao;
+	private String cor;
 	private double preco;
 
 	public Produto() {}
@@ -13,6 +14,7 @@ public class Produto {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
+		this.cor = cor;
 		this.preco = preco;
 	}
 	public Long getId() {
@@ -33,6 +35,14 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
 	public double getPreco() {
 		return preco;
 	}

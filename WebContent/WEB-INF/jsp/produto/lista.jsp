@@ -13,6 +13,7 @@
 		<tr>
 			<td>${produto.nome }</td>
 			<td>${produto.descricao }</td>
+			<td>${produto.cor }</td>
 			<td>${produto.preco }</td>
 		</tr>
 	</c:forEach>
