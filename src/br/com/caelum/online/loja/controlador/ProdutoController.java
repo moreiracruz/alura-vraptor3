@@ -8,6 +8,8 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 
 @Resource
@@ -15,9 +17,11 @@ public class ProdutoController {
 	
 	private final Result result;
 	private final RepositorioDeProdutos produtos;
+	private final Validator validator;
 
-	public ProdutoController(Result result, RepositorioDeProdutos produtos) {
+	public ProdutoController(Result result, Validator validator, RepositorioDeProdutos produtos) {
 		this.result = result;
+		this.validator = validator;
 		this.produtos = produtos;
 	}
 	
@@ -27,6 +31,13 @@ public class ProdutoController {
 	
 	@Post
 	public void adiciona(Produto produto) {
+		
+		if(produto.getPreco() < 0.1) {
+			validator.add(new ValidationMessage("O preço deve ser maior que R$ 0.1", "preco"));
+		}
+		
+		validator.onErrorUsePageOf(ProdutoController.class).formulario();
+		
 		produtos.salva(produto);
 		result.include("mensagem", "Novo produto adicionado com sucesso!");
 		result.redirectTo(ProdutoController.class).lista();
