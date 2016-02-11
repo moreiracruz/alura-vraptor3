@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 
 @Resource
 public class ProdutoController {
@@ -28,7 +29,7 @@ public class ProdutoController {
 	public void adiciona(Produto produto) {
 		produtos.salva(produto);
 		result.include("mensagem", "Novo produto adicionado com sucesso!");
-		result.forwardTo(ProdutoController.class).lista();
+		result.redirectTo(ProdutoController.class).lista();
 	}
 
 	public List<Produto> lista() {
@@ -38,6 +39,18 @@ public class ProdutoController {
 	@Path("/produto/{id}")
 	public Produto exibe(Long id) {
 		return produtos.pegaPorId(id);
+	}
+
+	@Path("/produto/{id}/xml")
+	public void exibeComoXML(Long id) {
+		Produto produto = produtos.pegaPorId(id);
+		result.use(Results.xml()).from(produto).serialize();
+	}
+
+	@Path("/produto/{id}/json")
+	public void exibeComoJSON(Long id) {
+		Produto produto = produtos.pegaPorId(id);
+		result.use(Results.json()).from(produto).serialize();
 	}
 
 }
