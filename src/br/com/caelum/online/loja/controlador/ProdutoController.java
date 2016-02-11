@@ -27,6 +27,7 @@ public class ProdutoController {
 	@Post
 	public void adiciona(Produto produto) {
 		produtos.salva(produto);
+		result.include("mensagem", "Novo produto adicionado com sucesso!");
 		result.forwardTo(ProdutoController.class).lista();
 	}
 
