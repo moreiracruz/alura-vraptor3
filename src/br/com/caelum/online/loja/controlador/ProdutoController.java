@@ -60,6 +60,11 @@ public class ProdutoController {
 	public Produto exibe(Long id) {
 		return produtos.pegaPorId(id);
 	}
+	
+	public void remover(Produto produto) {
+		produtos.remove(produto);
+		result.nothing();
+	}
 
 	@Path("/produto/{id}/xml")
 	public void exibeComoXML(Long id) {
